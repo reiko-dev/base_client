@@ -27,9 +27,9 @@ class BaseClient {
     }
   }
 
-  //Get
+  //Post
   Future<dynamic> post(String baseUrl, String api, dynamic payloadObj) async {
-    var payload = json.decode(payloadObj);
+    var payload = json.encode(payloadObj);
 
     var uri = Uri.parse(baseUrl + api);
     try {

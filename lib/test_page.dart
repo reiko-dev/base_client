@@ -1,22 +1,37 @@
-import 'package:base_client/base_client.dart';
+import 'package:base_client/controller/test_controller.dart';
 import 'package:flutter/material.dart';
 
 class TestPage extends StatelessWidget {
-  const TestPage({Key? key}) : super(key: key);
+  TestPage({Key? key}) : super(key: key);
 
+  final controller = TestController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              var response = await BaseClient()
-                  .get('https://jsonplaceholder.typicode.com/', 'todos/1');
-              print(response);
-            },
-            child: Text('Run'),
-          ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                controller.getData();
+              },
+              child: Text(
+                'Get',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () async {
+                controller.postData();
+              },
+              child: Text(
+                'Post',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
         ),
       ),
     );
